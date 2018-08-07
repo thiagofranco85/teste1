@@ -4,6 +4,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/sequelize');
 
+var estado = require('../models/estado');
 
 cidade = function(sequelize, DataTypes) {
   return sequelize.define('cidade', {
@@ -33,5 +34,8 @@ cidade = function(sequelize, DataTypes) {
 };
 
 
-module.exports = cidade(sequelize, Sequelize.DataTypes)
+var cidade = cidade(sequelize, Sequelize.DataTypes);
+
+cidade.belongsTo(estado, {foreignKey: 'estado_id'});
+module.exports = cidade;
 

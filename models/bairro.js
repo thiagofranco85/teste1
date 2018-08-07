@@ -1,7 +1,10 @@
 /* jshint indent: 2 */
 
+
 var Sequelize = require('sequelize');
 var sequelize = require('../config/sequelize');
+
+var cidade =  require('../models/cidade');
 
 bairro = function(sequelize, DataTypes) {
   return sequelize.define('bairro', {
@@ -35,4 +38,6 @@ bairro = function(sequelize, DataTypes) {
   });
 };
 
-module.exports = bairro(sequelize, Sequelize.DataTypes)
+var bairro =  bairro(sequelize, Sequelize.DataTypes);
+bairro.belongsTo(cidade, {foreignKey: 'cidade_id'});
+module.exports = bairro;
